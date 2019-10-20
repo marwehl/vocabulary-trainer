@@ -1,24 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Cardlist from './Cardlist'
+
 
 function App() {
+
+  const cards = [
+    {german: "Wie heißt du?",
+     spanish: "Como te llamas?",
+     tags: "Kennenlernen",
+    },
+    {
+      german: "Wie alt bist du?",
+      spanish: "Cuantos anos tienes?",
+      tags: "Kennenlernen",
+    },
+    {
+      german: "Die Rechnung, bitte!",
+      spanish: "La cuenta, por favor!",
+      tags: "Restaurant",
+    },
+    {
+      german: "Für mich bitte ein Wasser mit Kohlensäure.",
+      spanish: "Para mi, agua con gas, por favor",
+      tags: "Restaurant",
+    }
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Cardlist cards={cards}/>
+     
     </div>
   );
 }
