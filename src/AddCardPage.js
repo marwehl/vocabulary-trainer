@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import Button from './Button'
 
-export default function AddCardPage () {
+export default function AddCardPage ({onSubmit}) {
 return(
-  <FormStyled>
+  <AddCardPageStyled>
+  <FormStyled onSubmit={handleSubmit}>
     <LabelStyled>German:
-    <InputStyled>
+    <InputStyled name="german">
     </InputStyled>
     </LabelStyled>
     <LabelStyled>Spanish:
-      <InputStyled>
+      <InputStyled name="spanish">
       </InputStyled>
     </LabelStyled>
+    <Button text="Add new card"></Button>
   </FormStyled>
+  </AddCardPageStyled>
 )
+
+function handleSubmit(event) {
+event.preventDefault()
+const formData = new FormData(event.target);
+const data = Object.fromEntries(formData);
+onSubmit(data)
 }
+}
+
+const AddCardPageStyled = styled.main`
+background-color: #d35e5d;`
 
 const FormStyled = styled.form`
   display: grid;

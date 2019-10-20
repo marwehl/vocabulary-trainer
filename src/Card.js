@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/macro'
+import Tag from "./Tag"
 
 
 export default function Card ({tags, german, spanish}) {
@@ -12,7 +13,10 @@ export default function Card ({tags, german, spanish}) {
 
   return (
     <CardStyled onClick={toggleAnswer}>
-      <div>{tags}</div>
+      <TagListStyled>
+        {tags &&
+        tags.map(tag => tag && <Tag text={tag} key={tag} />)}
+      </TagListStyled>
       <p>{german}</p>
         {isVisible &&
       <p>{spanish}</p>
@@ -24,6 +28,11 @@ export default function Card ({tags, german, spanish}) {
 const CardStyled = styled.section`
 display: flex;
 flex-direction: column;
-border: 2px solid;
+background-color: white;
+border-radius: 5px;
+align-items: center;
+padding: 20px;
 `
+ const TagListStyled = styled.section`
+ `
 

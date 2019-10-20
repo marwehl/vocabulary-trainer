@@ -2,32 +2,36 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import HomePage from './HomePage'
-import PracticePage from './PracticePage'
+import RepeatPage from './RepeatPage'
 import AddCardPage from './AddCardPage'
 import Navigation from './Navigation'
 
 
 export default function App() {
 
-  const cards = [
+  let cards = [
     {german: "Wie heißt du?",
      spanish: "Como te llamas?",
-     tags: "Kennenlernen",
+     tags: ["Kennenlernen"],
+     toRepeat: false,
     },
     {
       german: "Wie alt bist du?",
       spanish: "Cuantos anos tienes?",
-      tags: "Kennenlernen",
+      tags: ["Kennenlernen"],
+      toRepeat: true,
     },
     {
       german: "Die Rechnung, bitte!",
       spanish: "La cuenta, por favor!",
-      tags: "Restaurant",
+      tags: ["Restaurant"],
+      toRepeat: true,
     },
     {
       german: "Für mich bitte ein Wasser mit Kohlensäure.",
       spanish: "Para mi, agua con gas, por favor",
-      tags: "Restaurant",
+      tags: ["Restaurant"],
+      toRepeat: false,
     }
   ]
   return (
@@ -42,30 +46,37 @@ export default function App() {
       )}
       />
       <Route
-      path="/practice"
+      path="/repeat"
       render={() => (
-        <PracticePage
-        cards={cards.filter(card => card.toPractice === true)}/>
+        <RepeatPage
+        cards={cards.filter(card => card.toRepeat === true)}/>
       )}
       />
       <Route
       path="/add"
       render={() => (
-        <AddCardPage/>
+        <AddCardPage onSubmit={addCard}/>
       )}
       />
-  
      <Navigation/>
-     
       </AppStyled>
     </Router>
   );
+
+
+  function addCard( data) {
+  cards = [{german: data.german, spanish: data.spanish, toRepeat: false}, ...cards]
+  }
 }
 
 const AppStyled = styled.section`
 display: grid;
 grid-template-rows: auto 48px;
-padding: 20px;
+left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
 `
 
 

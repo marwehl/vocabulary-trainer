@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Cardlist from "./Cardlist"
 
-export default function HomePage ({cards}) {
-  return(
-    <HomePageStyled>
-    <Cardlist cards={cards} />
-    </HomePageStyled >
+export default function RepeatPage ({cards}) {
+  return (
+    <RepeatPageStyled>
+    <Cardlist cards={cards}/>
+    </RepeatPageStyled>
   )
 }
 
-const HomePageStyled = styled.main`
+const RepeatPageStyled = styled.main`
 padding: 20px;
 overflow-y: scroll;
 background-color: #d35e5d;
