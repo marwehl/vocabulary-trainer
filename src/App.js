@@ -1,8 +1,13 @@
 import React from 'react';
-import Cardlist from './Cardlist'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import styled from 'styled-components/macro'
+import HomePage from './HomePage'
+import PracticePage from './PracticePage'
+import AddCardPage from './AddCardPage'
+import Navigation from './Navigation'
 
 
-function App() {
+export default function App() {
 
   const cards = [
     {german: "Wie heißt du?",
@@ -26,11 +31,42 @@ function App() {
     }
   ]
   return (
-    <div className="App">
-     <Cardlist cards={cards}/>
+  <Router>
+    <AppStyled>
+      <Route exact
+      path="/"
+      render={() => (
+        <HomePage
+        cards={cards}
+        />
+      )}
+      />
+      <Route
+      path="/practice"
+      render={() => (
+        <PracticePage
+        cards={cards.filter(card => card.toPractice === true)}/>
+      )}
+      />
+      <Route
+      path="/add"
+      render={() => (
+        <AddCardPage/>
+      )}
+      />
+  
+     <Navigation/>
      
-    </div>
+      </AppStyled>
+    </Router>
   );
 }
 
-export default App;
+const AppStyled = styled.section`
+display: grid;
+grid-template-rows: auto 48px;
+padding: 20px;
+`
+
+
+
